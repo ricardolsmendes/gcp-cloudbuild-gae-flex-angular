@@ -34,5 +34,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Python
-/env
+# Appengine Flexible environment
+/gae-flex/env
+/gae-flex/static
