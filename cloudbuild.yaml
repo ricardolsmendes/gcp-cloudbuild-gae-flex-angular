@@ -1,0 +1,13 @@
+steps:
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'install' ]
+
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'build', '--prod' ]
+
+- name: 'ubuntu'
+  args: ['bash', './build-helpers/copy-dist-files-to-gae.bash']
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'app', 'deploy', './gae-flex/app.yaml', '--version=1' ]
