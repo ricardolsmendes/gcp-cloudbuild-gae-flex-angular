@@ -6,19 +6,19 @@ steps:
 - name: gcr.io/cloud-builders/npm
   args: [ run, build, --prod ]
 
-- name: ubuntu
-  entrypoint: bash
+- name: alpine
+  entrypoint: sh
   args:
   - -c
   - |
     mkdir ./gae-flex/static/
 
-- name: ubuntu
-  entrypoint: bash
+- name: alpine
+  entrypoint: sh
   args:
   - -c
   - |
-    cp -rf ./dist/gcp-cloudbuild-gae-flex-angular/ ./gae-flex/static/
+    cp -rf ./dist/gcp-cloudbuild-gae-flex-angular/* ./gae-flex/static/
 
 - name: gcr.io/cloud-builders/gcloud
   args: [ 'app', 'deploy', './gae-flex/app.yaml', '--version=1' ]
