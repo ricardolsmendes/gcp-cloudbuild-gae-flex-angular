@@ -1,17 +1,24 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: [ 'install' ]
+- name: gcr.io/cloud-builders/npm
+  args: [ install ]
 
-- name: 'gcr.io/cloud-builders/npm'
-  args: [ 'run', 'build', '--prod' ]
+- name: gcr.io/cloud-builders/npm
+  args: [ run, build, --prod ]
 
-- name: 'ubuntu'
-  entrypoint: 'bash'
+- name: ubuntu
+  entrypoint: bash
   args:
-  - '-c' # pass what follows as a command to bash
+  - -c
   - |
-    sed $'s/^M$//' ./build-helpers/copy-dist-files-to-gae.sh > sh # ignore CR (\r) chars when reading the script file
+    mkdir ./gae-flex/static/
 
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: ubuntu
+  entrypoint: bash
+  args:
+  - -c
+  - |
+    cp -rf ./dist/gcp-cloudbuild-gae-flex-angular/ ./gae-flex/static/
+
+- name: gcr.io/cloud-builders/gcloud
   args: [ 'app', 'deploy', './gae-flex/app.yaml', '--version=1' ]
