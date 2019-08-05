@@ -11,7 +11,7 @@ steps:
   args:
   - '-c' # pass what follows as a command to bash
   - |
-    sed $'s/^M$//' ./build-helpers/copy-dist-files-to-gae.sh > sh # remove CR (\r) chars when reading the .sh file
+    sed $'s/^M$//' ./build-helpers/copy-dist-files-to-gae.sh > sh # ignore CR (\r) chars when reading the script file
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'app', 'deploy', './gae-flex/app.yaml', '--version=1' ]
