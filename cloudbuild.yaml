@@ -21,4 +21,4 @@ steps:
     cp -rf ./dist/gcp-cloudbuild-gae-flex-angular/* ./gae-flex/static/
 
 - name: gcr.io/cloud-builders/gcloud
-  args: [ 'app', 'deploy', './gae-flex/app.yaml', '--version=1' ]
+  args: [ app, deploy, ./gae-flex/app.yaml, --version=$SHORT_SHA ]
