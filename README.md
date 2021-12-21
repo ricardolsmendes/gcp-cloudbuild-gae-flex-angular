@@ -16,7 +16,7 @@ Build.
   gcloud builds submit --config cloudbuild.yaml .
   ```
 
-## Understand the concepts and design a fully automated build workflow
+## Get to know the concepts behind this code
 
 [Continuous Delivery in Google Cloud Platform — Cloud Build with App
 Engine](https://medium.com/google-cloud/continuous-delivery-in-google-cloud-platform-cloud-build-with-app-engine-8355d3a11ff5)
